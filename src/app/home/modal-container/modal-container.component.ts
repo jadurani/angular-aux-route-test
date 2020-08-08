@@ -41,7 +41,7 @@ export class ModalContainerComponent {
     }
 
 
-    this.router.navigate([{ outlets: { side: ['detail', '1234'] } }]);
+    this.router.navigate(['/home', { outlets: { side: ['detail', '1234'] } }]);
 
     const modal = await this.modalCtrl.create({
       component: ModalRouterComponent,
@@ -55,7 +55,7 @@ export class ModalContainerComponent {
     modal
       .onDidDismiss()
       .then(() => {
-        this.router.navigate([{ outlets: { side: null } }])
+        this.router.navigate(['/home', { outlets: { side: null } }])
       })
   }
 }

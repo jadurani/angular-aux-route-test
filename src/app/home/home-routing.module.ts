@@ -26,28 +26,28 @@ const routes: Routes = [
         //   }
         // ],
       },
-      // {
-      //   path: 'detail/:id',
-      //   component: ActualItemComponent,
-      //   outlet: 'side'
-      // },
-      // {
-      //   path: 'basket',
-      //   component: AnotherActualItemComponent,
-      //   outlet: 'side'
-      // }
+      {
+        path: 'detail/:id',
+        component: ActualItemComponent,
+        outlet: 'side'
+      },
+      {
+        path: 'basket',
+        component: AnotherActualItemComponent,
+        outlet: 'side'
+      }
     ],
   },
-  // {
-  //   path: 'detail/:id',
-  //   component: ActualItemComponent,
-  //   outlet: 'side'
-  // },
-  // {
-  //   path: 'basket',
-  //   component: AnotherActualItemComponent,
-  //   outlet: 'side'
-  // }
+  {
+    path: 'detail/:id',
+    component: ActualItemComponent,
+    outlet: 'side'
+  },
+  {
+    path: 'basket',
+    component: AnotherActualItemComponent,
+    outlet: 'side'
+  }
 ];
 
 @NgModule({

@@ -13,16 +13,16 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'detail/:id',
-    component: ActualItemComponent,
-    outlet: 'side'
-  },
-  {
-    path: 'basket',
-    component: AnotherActualItemComponent,
-    outlet: 'side'
-  }
+  // {
+  //   path: 'detail/:id',
+  //   component: ActualItemComponent,
+  //   outlet: 'side'
+  // },
+  // {
+  //   path: 'basket',
+  //   component: AnotherActualItemComponent,
+  //   outlet: 'side'
+  // }
 ];
 
 @NgModule({
