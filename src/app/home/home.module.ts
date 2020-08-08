@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { ModalRouterComponent } from "./modal-router/modal-router.component";
+import { ModalContainerComponent } from "./modal-container/modal-container.component";
+import { ActualItemComponent } from "./actual-item/actual-item.component";
+import { AnotherActualItemComponent } from "./another-actual-item/another-actual-item.component";
 
 
 @NgModule({
@@ -14,6 +18,13 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+    ModalContainerComponent,
+    ModalRouterComponent,
+    ActualItemComponent,
+    AnotherActualItemComponent
+  ],
+  entryComponents: [ModalRouterComponent]
 })
 export class HomePageModule {}
