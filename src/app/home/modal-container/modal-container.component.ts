@@ -10,15 +10,32 @@ import { Animation, AnimationController } from '@ionic/angular';
   styleUrls: ['./modal-container.component.scss'],
 })
 export class ModalContainerComponent {
+  modal: HTMLIonModalElement;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private modalCtrl: ModalController,
     private animationCtrl: AnimationController,
-  ) { }
+  ) {
+    console.log('meow');
+  }
 
-  async openDialog() {
+  ionViewWillEnter() {
+    const currentUrlTree = this.router.parseUrl(this.router.url);
+    if ('side' in currentUrlTree.root.children) {
+      console.log('yay');
+      this.initModal().then(() => this.openDialog());
+    }
+  }
+
+  ionViewWillLeave() {
+    if (this.modal) {
+      this.modal.dismiss();
+    }
+  }
+
+  async initModal() {
     const enterAnimation = (baseEl: any) => {
       const backdropAnimation = this.animationCtrl.create()
         .addElement(baseEl.querySelector('ion-backdrop')!)
@@ -40,22 +57,32 @@ export class ModalContainerComponent {
       return enterAnimation(baseEl).direction('reverse');
     }
 
+    try {
+      this.modal = await this.modalCtrl.create({
+        component: ModalRouterComponent,
+        cssClass: 'hello-wrapper',
+        enterAnimation,
+        leaveAnimation
+      });
+    } catch (error) {
+      console.log('error tc 1')
+    }
+  }
+
+  async openDialog() {
 
     this.router.navigate([{ outlets: { side: ['detail', '1234'] } }]);
 
-    const modal = await this.modalCtrl.create({
-      component: ModalRouterComponent,
-      cssClass: 'hello-wrapper',
-      enterAnimation,
-      leaveAnimation
-    });
-
-
-    await modal.present();
-    modal
-      .onDidDismiss()
-      .then(() => {
-        this.router.navigate([{ outlets: { side: null } }])
-      })
+    try {
+      await this.modal.present();
+      this.modal
+        .onDidDismiss()
+        .then(() => {
+          this.router.navigate([{ outlets: { side: null } }]);
+          this.initModal();
+        }).catch(e => {})
+    } catch (error) {
+      console.log('error tc 2')
+    }
   }
 }
